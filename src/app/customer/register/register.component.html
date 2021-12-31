@@ -15,7 +15,7 @@
   <p>
     <mat-form-field >
       <mat-label>Fecha de nacimiento</mat-label>
-      <input matInput  type="date" placeholder="Placeholder" formControlName="dateOfBirthControl">
+      <input matInput  type="date"  [min]="minDateOfBirth" [max]="maxDateOfBirth" placeholder="Placeholder" formControlName="dateOfBirthControl">
     </mat-form-field>
   </p>
   <p>
