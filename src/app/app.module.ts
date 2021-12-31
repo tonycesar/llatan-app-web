@@ -8,6 +8,8 @@ import { RegisterComponent } from './customer/register/register.component';
 import { ListComponent } from './customer/list/list.component';
 import { DetailComponent } from './customer/detail/detail.component';
 import { NotFoundComponent } from './common/not-found/not-found.component';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { NotFoundComponent } from './common/not-found/not-found.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
