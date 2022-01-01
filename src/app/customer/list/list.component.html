@@ -1,5 +1,13 @@
 <h2>Lista de clientes</h2>
 
+
+<div>
+  Edad promedio: {{promedio}}
+</div>
+<div>
+  Desvicación Estandar: {{desviacion}}
+</div>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef> No. </th>

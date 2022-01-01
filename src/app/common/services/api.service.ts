@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 export class ApiService {
   listCustomerURL = environment.urlApi+'/listclientes';
   createCustomerURL = environment.urlApi+'/creacliente';
+  kpiCustomerURL = environment.urlApi+'/kpideclientes';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -17,5 +18,9 @@ export class ApiService {
 
   createCustomer(customer: any) {
     return this.httpClient.post(this.createCustomerURL, customer)
+  }
+
+  kpiCustomer(): Observable<any> {
+    return this.httpClient.get<any>(this.kpiCustomerURL)
   }
 }

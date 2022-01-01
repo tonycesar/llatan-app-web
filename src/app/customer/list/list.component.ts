@@ -9,6 +9,8 @@ import { ApiService } from 'src/app/common/services/api.service';
 export class ListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'lastname', 'age', 'birthDate', 'deathDate'];
   dataSource:any[] = [];
+  promedio= 0;
+  desviacion= 0;
   constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
@@ -17,6 +19,10 @@ export class ListComponent implements OnInit {
         item.position = i;
       })
       this.dataSource = data;
+    })
+    this.apiService.kpiCustomer().subscribe(({promedio, desviacion}) => {
+      this.promedio = promedio;
+      this.desviacion = desviacion;
     })
   }
 
