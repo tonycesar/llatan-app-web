@@ -48,9 +48,9 @@ export class RegisterComponent implements OnInit {
       birthDate: birthDate.getFullYear() + '-' + (birthDate.getMonth() + 1) + '-' + birthDate.getDate(),
       age: this.ageFormBirthDate(birthDate)
     }).subscribe((ok) => {
-      console.log(ok)
+      this.form.setValue( {dateOfBirthControl: null, lastnameControl: null, nameControl: null, ageControl: null})
       this._snackBar.open('Documento guardado','Listo',{duration: 3000});
-    }, (error) => {
+    }, ({error}) => {
       this._snackBar.open(error.message,'Entendido',{duration: 3000});
     })
   }

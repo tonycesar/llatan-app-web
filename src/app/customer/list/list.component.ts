@@ -21,8 +21,8 @@ export class ListComponent implements OnInit {
       this.dataSource = data;
     })
     this.apiService.kpiCustomer().subscribe(({promedio, desviacion}) => {
-      this.promedio = promedio;
-      this.desviacion = desviacion;
+      this.promedio = promedio.toFixed(2);
+      this.desviacion = desviacion.toFixed(2);
     })
   }
 
