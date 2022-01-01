@@ -38,15 +38,15 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.form.invalid) return;
-    const {dateOfBirthControl, lastnameControl, nameControl } = this.form.value;
+    const { dateOfBirthControl, lastnameControl, nameControl } = this.form.value;
     const birthDate = new Date(dateOfBirthControl);
     birthDate.setHours(+birthDate.getHours() + birthDate.getTimezoneOffset() / 60)
     this.apiService.createCustomer({
       name: nameControl,
       lastname: lastnameControl,
-      birthDate: birthDate.toUTCString(),
+      birthDate: birthDate.getFullYear() + '-' + (birthDate.getMonth() + 1) + '-' + birthDate.getDate(),
       age: this.ageFormBirthDate(birthDate)
-    }).subscribe((ok)=>{
+    }).subscribe((ok) => {
       console.log(ok)
     })
   }
