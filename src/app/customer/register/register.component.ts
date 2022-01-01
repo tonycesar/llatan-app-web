@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'src/app/common/services/api.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
   });
   minDateOfBirth = '1900-01-01';
   maxDateOfBirth = [new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()].join('-')
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.form.get('dateOfBirthControl')?.valueChanges.subscribe(date => {
@@ -48,6 +49,9 @@ export class RegisterComponent implements OnInit {
       age: this.ageFormBirthDate(birthDate)
     }).subscribe((ok) => {
       console.log(ok)
+      this._snackBar.open('Documento guardado','Listo',{duration: 3000});
+    }, (error) => {
+      this._snackBar.open(error.message,'Entendido',{duration: 3000});
     })
   }
 
