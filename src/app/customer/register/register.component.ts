@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from 'src/app/common/services/api.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
   });
   minDateOfBirth = '1900-01-01';
   maxDateOfBirth = [new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()].join('-')
-  constructor() { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
     this.form.get('dateOfBirthControl')?.valueChanges.subscribe(date => {
@@ -36,7 +37,18 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-
+    if (this.form.invalid) return;
+    const {dateOfBirthControl, lastnameControl, nameControl } = this.form.value;
+    const birthDate = new Date(dateOfBirthControl);
+    birthDate.setHours(+birthDate.getHours() + birthDate.getTimezoneOffset() / 60)
+    this.apiService.createCustomer({
+      name: nameControl,
+      lastname: lastnameControl,
+      birthDate: birthDate.toUTCString(),
+      age: this.ageFormBirthDate(birthDate)
+    }).subscribe((ok)=>{
+      console.log(ok)
+    })
   }
 
 }
